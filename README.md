@@ -21,6 +21,6 @@ This plugin is plain javascript and doesn't have any external dependency other t
 <ul>
   <li>It would be desirable to allow different arrangement options for the thumbnails, also different image sizes for them</li>
   <li>More test on image resolutions lesser than 800x600 is needed.</li>
-  <li>More configuration options are desirable: to select between different transitions or directly don't use them, to change appaerance or positioning of transition buttons, etc...</li>
+  <li>More configuration options are desirable: to select between different transitions or directly don't use them, to change appaerance or positioning of transition buttons, to select enlarged image size, etc...</li>
   <li>Use of resized images to improve load times</li>
 </ul>
