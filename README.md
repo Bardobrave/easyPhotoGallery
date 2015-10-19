@@ -4,8 +4,10 @@ An easy to use, lightweight, javascript photo gallery ready to work out of the b
 This project born from the necessity to include a photo gallery in one of our projects at my current job. There are virtually thousands of different javascript photo galleries nowadays in the wild, however, experience had demonstrated that there are many products that doesn't fit to our basic needs, or worse, are poorly developed and full of unnecessary features that add no value to the pack but in change force to include several dependencies into your project.
 
 So this photo gallery seek two main objectives:
--Be easy to use and simple. Any programmer just need to add a container in his pages to hold the gallery and pass it an array of images.
--Be clean and lightweight, even if this means to lack some features
+<ul>
+  <li>Be easy to use and simple. Any programmer just need to add a container in his pages to hold the gallery and pass it an array of images.</li>
+  <li>Be clean and lightweight, even if this means to lack some features</li>
+</ul>
 
 # Feature list and pending job.
 
