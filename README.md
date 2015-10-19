@@ -15,7 +15,7 @@ Once a gallery object is created, a thumbnail gallery is created inside the cont
 
 Each thumbnail has an event listener attached that opens a modal layer where it's original image is portrayed. If the image is greater than 800x600 pixels it's displayed at this hard limit. On it's sides, two buttons allows to transition between different images on the collection. If user clicks with the mouse outside of the enlarged image or the transition buttons, the modal layer is closed.
 
-This plugin is plain javascript and doesn't have any external dependency other than execute on CSS3 able browsers for image transitions to work.
+This plugin is plain javascript and doesn't have any external dependency other than execute on CSS3 able browsers for image transitions to work and font-awesome for next and previous buttons.
 
 <h3>TO DO LIST</h3>
 <ul>
