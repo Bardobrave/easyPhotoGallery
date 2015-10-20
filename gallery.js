@@ -61,6 +61,11 @@ Gallery.prototype.thumbnailClick = function (event) {
     var nextButton = document.createElement("div");
     previousButton.setAttribute("class", "galleryButton fa fa-chevron-circle-left");
     nextButton.setAttribute("class", "galleryButton fa fa-chevron-circle-right");
+    
+    //ATTENTION: Only for jsfiddle example purposes.
+    previouButton.innerHTML = "<";
+    nextButton.innerHTML = ">";
+    //----------------------------------------------
 
     var wDisplacement = (currentPhoto.width + 50) / 2;
     var hDisplacement = 90 + ((currentPhoto.height) / 2);
