@@ -27,5 +27,3 @@ This plugin is plain javascript and doesn't have any external dependency other t
   <li>Add drag and swipe events to allow pictures to cycle easily on tablets and smartphones</li>
   <li>Study the possibility to change picture resolution depending on portrait orientation or original resolution</li>
 </ul>
-
-<iframe width="100%" height="300" src="//jsfiddle.net/bardobrave/o8oL3phL/10/embedded/" allowfullscreen="allowfullscreen" frameborder="0"></iframe>
