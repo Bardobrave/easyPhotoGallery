@@ -63,7 +63,7 @@ Gallery.prototype.thumbnailClick = function (event) {
     nextButton.setAttribute("class", "galleryButton fa fa-chevron-circle-right");
     
     //ATTENTION: Only for jsfiddle example purposes.
-    previouButton.innerHTML = "<";
+    previousButton.innerHTML = "<";
     nextButton.innerHTML = ">";
     //----------------------------------------------
 
