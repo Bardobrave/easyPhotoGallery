@@ -9,6 +9,8 @@ So this photo gallery seek two main objectives:
   <li>Be clean and lightweight, even if this means to lack some features</li>
 </ul>
 
+<a href="https://jsfiddle.net/bardobrave/o8oL3phL/embedded/result/" target="_blank">Here you have a jsfiddle with a simple example of use</a>
+
 # Feature list and pending job.
 
 Once a gallery object is created, a thumbnail gallery is created inside the container passed to the constructor. Thumbnails are arranged floated to the left and displayed at 200x200 pixels.
