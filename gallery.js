@@ -46,6 +46,13 @@ Gallery.prototype.thumbnailClick = function (event) {
         return thisPhoto;
     }
 
+    function repositionButtons(image) {
+        var wDisplacement = (image.width + 50) / 2;
+        var hDisplacement = 90 + ((image.height) / 2);
+        previousButton.setAttribute("style", "top:" + hDisplacement + "px; left:-" + wDisplacement + "px;");
+        nextButton.setAttribute("style", "top:" + hDisplacement + "px; left:" + wDisplacement + "px;");
+    }
+
     //Se carga la foto sobre la que se hace click en la galería de tamaño completo, así como las fotos previa y siguiente
     var currentImage = event.target;
     var previousImage = (currentImage.previousElementSibling != null) ? currentImage.previousElementSibling
@@ -61,11 +68,7 @@ Gallery.prototype.thumbnailClick = function (event) {
     var nextButton = document.createElement("div");
     previousButton.setAttribute("class", "galleryButton fa fa-chevron-circle-left");
     nextButton.setAttribute("class", "galleryButton fa fa-chevron-circle-right");
-    
-    var wDisplacement = (currentPhoto.width + 50) / 2;
-    var hDisplacement = 90 + ((currentPhoto.height) / 2);
-    previousButton.setAttribute("style", "top:" + hDisplacement + "px; left:-" + wDisplacement + "px;");
-    nextButton.setAttribute("style", "top:" + hDisplacement + "px; left:" + wDisplacement + "px;");
+    repositionButtons(currentPhoto);
 
     this._fullsizeGallery.appendChild(previousButton);
     this._fullsizeGallery.appendChild(nextButton);
@@ -89,6 +92,7 @@ Gallery.prototype.thumbnailClick = function (event) {
             : currentInstance._thumbnailCollection[currentInstance._thumbnailCollection.length - 1];
         nextImage = (newImage.nextElementSibling != null) ? newImage.nextElementSibling : currentInstance._thumbnailCollection[0];
         event.cancelBubble = true;
+        repositionButtons(previousPhoto);
         currentPhoto.style.left = "1025px";
         currentPhoto.style.opacity = 0;
         previousPhoto.style.left = 0;
@@ -108,6 +112,7 @@ Gallery.prototype.thumbnailClick = function (event) {
         previousImage = (newImage.previousElementSibling != null) ? newImage.previousElementSibling
             : currentInstance._thumbnailCollection[currentInstance._thumbnailCollection.length - 1];
         event.cancelBubble = true;
+        repositionButtons(nextPhoto);
         currentPhoto.style.left = "-1600px";
         currentPhoto.style.opacity = 0;
         nextPhoto.style.left = 0;
