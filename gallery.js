@@ -1,33 +1,51 @@
-function Gallery(container, photoArray) { 
+function Gallery(container, photoArray) {
     this._galleryHolder = {};
     this._fullsizeGallery = {};
     this._thumbnailCollection = [];
+
+    //Método que genera eventos de click sobre la colección de thumbnails
+    this.associateThumbEvents = function () {
+        this._thumbnailCollection = this._galleryHolder.getElementsByClassName("thumbnail");
+
+        var currentInstance = this;
+        for (var x = 0; x < this._thumbnailCollection.length; x++) {
+            this._thumbnailCollection[x].addEventListener("click", function (event) { currentInstance.thumbnailClick(event); });
+        }
+    }
 
     //Creación de la galería de thumbnails
     var thumbnailGallery = document.createElement("div");
     thumbnailGallery.setAttribute("class", "thumbnailGallery");
     this._galleryHolder = document.getElementById(container);
+    this._galleryHolder.appendChild(thumbnailGallery);
+    thumbnailGallery.innerHTML = "<div class=\"noData\"><p class=\"fa fa-spinner fa-spin\"></p> Loading...</div>"
+
     if (photoArray.length == 0) {
         thumbnailGallery.innerHTML = "<div class=\"noData\">No hay imágenes asociadas</div>";
     } else {
-        for (var image in photoArray)
-            thumbnailGallery.innerHTML += "<img src=\"" + photoArray[image] + "\" width=\"200\" height=\"200\" alt=\"" + photoArray[image]
-                + "\" class=\"thumbnail\" />";
-
+        var loadedImages = 0;
+        var tempGallery = "";
+        var currentThumbnail = [];
+        var currentInstance = this;
+        for (var image in photoArray) {
+            currentThumbnail[image] = new Image();
+            currentThumbnail[image].onload = function () {
+                loadedImages++;
+                tempGallery += "<img src=\"" + this.src + "\" width=\"200\" height=\"200\" alt=\"" + this.src + "\" class=\"thumbnail\" />";
+                if (loadedImages >= photoArray.length) {
+                    //Una vez cargadas todas las imágenes mostrar la galería y asociar eventos de click a los thumbnails
+                    thumbnailGallery.innerHTML = tempGallery;
+                    currentInstance.associateThumbEvents();
+                }
+            }
+            currentThumbnail[image].src = photoArray[image];
+        }
     }
-    this._galleryHolder.appendChild(thumbnailGallery);
-    this._thumbnailCollection = this._galleryHolder.getElementsByClassName("thumbnail");
 
-    //Creación de la galería en tamaño grande
+    //Creación del objeto que contendrá la galería en tamaño grande
     this._fullsizeGallery = document.createElement("div");
     this._fullsizeGallery.setAttribute("id", "fullsizeGallery");
     document.body.appendChild(this._fullsizeGallery);
-
-    //Asociación de evento onClick a los thumbnails
-    var currentInstance = this;
-    for (var x = 0; x < this._thumbnailCollection.length; x++) {
-        this._thumbnailCollection[x].addEventListener("click", function (event) { currentInstance.thumbnailClick(event); });
-    }
 }
 
 Gallery.prototype.thumbnailClick = function (event) {
@@ -58,7 +76,7 @@ Gallery.prototype.thumbnailClick = function (event) {
     var previousImage = (currentImage.previousElementSibling != null) ? currentImage.previousElementSibling
         : this._thumbnailCollection[this._thumbnailCollection.length - 1];
     var nextImage = (currentImage.nextElementSibling != null) ? currentImage.nextElementSibling : this._thumbnailCollection[0];
-    
+
     var previousPhoto = loadImageLayer.call(this, previousImage, "previousPhoto");
     var currentPhoto = loadImageLayer.call(this, currentImage, "currentPhoto");
     var nextPhoto = loadImageLayer.call(this, nextImage, "nextPhoto");
