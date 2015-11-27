@@ -1,5 +1,12 @@
 .thumbnailGallery { padding:5px 0px; float:left; width:100%; }
-.thumbnailGallery > .thumbnail { float:left; margin-left:10px; cursor:pointer; }
+.thumbnailGallery > .thumbnail { 
+    float:left; 
+    margin-left:10px; 
+    cursor:pointer;
+    padding:4px;
+    border:1px solid #ddd;
+    border-radius:4px;
+}
 
 #fullsizeGallery{ 
     display:none; 
