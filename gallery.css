@@ -1,15 +1,5 @@
-.thumbnailGallery { padding:5px 0px; float:left; }
-.thumbnailGallery > .thumbnail { 
-    float:left; 
-    margin-left:10px; 
-    cursor:pointer; 
-    padding: 4px;
-    margin-bottom: 20px;
-    background-color: #FFF;
-    border: 1px solid #DDD;
-    border-radius: 4px;
-    transition: all 0.2s ease-in-out 0s;
-}
+.thumbnailGallery { padding:5px 0px; float:left; width:100%; }
+.thumbnailGallery > .thumbnail { float:left; margin-left:10px; cursor:pointer; }
 
 #fullsizeGallery{ 
     display:none; 
@@ -89,4 +79,12 @@
     z-index:100;
     transition: left, top;
     transition-duration:1s;
+}
+
+.galleryLoader {
+    width:100%;
+    font-size:2em;
+    color:#CCC;
+    text-align:center;
+    padding:100px 0px;
 }
