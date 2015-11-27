@@ -14,6 +14,13 @@ function Gallery(container, photoArray) {
         }
     }
 
+    //Método privado que comprueba si se han podido cargar las imágenes tras cinco segundos
+    function checkThumbGallery(loadedImages, currentInstance) {
+        console.log("No han podido cargarse " + (photoArray.length - loadedImages) + " imágenes de la galería");
+        thumbnailGallery.innerHTML = tempGallery;
+        associateThumbEvents.call(currentInstance);
+    }
+
     //Método privado que define los eventos de click sobre los thumbnails
     function thumbnailClick(event) {
 
@@ -117,7 +124,7 @@ function Gallery(container, photoArray) {
     thumbnailGallery.setAttribute("class", "thumbnailGallery");
     this._galleryHolder = document.getElementById(container);
     this._galleryHolder.appendChild(thumbnailGallery);
-    thumbnailGallery.innerHTML = "<div class=\"noData\"><p class=\"fa fa-spinner fa-spin\"></p> Loading...</div>"
+    thumbnailGallery.innerHTML = "<div class=\"galleryLoader\"><p class=\"fa fa-spinner fa-spin\"></p> Gallery loading...</div>"
 
     if (photoArray.length == 0) {
         thumbnailGallery.innerHTML = "<div class=\"noData\">No hay imágenes asociadas</div>";
@@ -126,6 +133,7 @@ function Gallery(container, photoArray) {
         var tempGallery = "";
         var currentThumbnail = [];
         var currentInstance = this;
+        var timeout = setTimeout(function () { checkThumbGallery(loadedImages, currentInstance); }, 5000);
         for (var image in photoArray) {
             currentThumbnail[image] = new Image();
             currentThumbnail[image].onload = function () {
@@ -135,6 +143,7 @@ function Gallery(container, photoArray) {
                     //Una vez cargadas todas las imágenes mostrar la galería y asociar eventos de click a los thumbnails
                     thumbnailGallery.innerHTML = tempGallery;
                     associateThumbEvents.call(currentInstance);
+                    window.clearTimeout(timeout); //Si se dispara el evento que carga las imágenes se elimina el check a los 5 segundos.
                 }
             }
             currentThumbnail[image].src = photoArray[image];
